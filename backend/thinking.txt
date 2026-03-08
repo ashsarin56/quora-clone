@@ -1,0 +1,52 @@
+to create schema i need to know what are the entities and atttributes similar to er diagram
+1. user 
+    a. user_id primary key 
+    b. name
+    c. password
+    d. email
+    e. posts ( questions ) foreign key 
+    f. comments ( answers )
+    g. reposts
+    h. profile
+2. question 
+    a. question_id primary key 
+    b. user_id foreign key 
+    c. comments
+    d. upvotes 
+    e. downvotes 
+    f. number of reposts  
+    (and maybe related questions recommended my ml algos) 
+3. answer
+    a. upvote
+    
+    b. downvote
+    c. user_id ( foreign key )
+    d. comment_id primary key 
+    e. replies ( this could be implemented using trees like they are also
+                comments but in response to another comment as they are recursive)
+
+
+now in mongo db everyone has _id thing right....
+    so we can basically correspond foreign keys and responsive attributes as arrays 
+so this makes it simpler 
+
+user 
+    name   
+    email
+    password
+    profile
+question
+    title 
+    body 
+    author
+    upvotes
+    downvotes
+answer 
+    body 
+    author
+    question
+    upvotes 
+    downvotes
+
+
+hence we can store relationship between entities and attributes in always child entity
