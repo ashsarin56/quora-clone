@@ -10,10 +10,14 @@ dotenv.config();
 // importing modules 
 const connectDB=require('./config/db');
 connectDB();
+const authroutes=require('./routes/authroutes');
+
 
 // middlewares
 app.use(express.json());
 app.use(morgan('dev'));
+app.use('/api/auth',authroutes);
+
 
 const PORT=process.env.PORT || 5000;
 app.listen(PORT,()=>{
