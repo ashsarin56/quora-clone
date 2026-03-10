@@ -15,14 +15,6 @@ const userschema=new mongoose.Schema({
     password:{
         type:String,
         required:true,
-        minlength:6,
-        validate:{
-            validator:function(value){
-                const strongpass=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
-                return strongpass.test(value);
-            },
-            message:'Password must contain at least one uppercase , one lowercase letter , one number , one symbol , and at least 6 characters.'
-        }
     },
     // profile_photo:{
     //     name:String,
