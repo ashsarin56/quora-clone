@@ -34,7 +34,7 @@ const getQuestion=async (req,res)=>{
 };
 const deleteQuestion=async (req,res)=>{
     try{
-        const {title,body}=req.body;
+        // const {title,body}=req.body;
         const user=req.user._id;
         const questionsinfo= await Question.findById(req.params.id);
         if(!questionsinfo){

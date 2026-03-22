@@ -118,4 +118,19 @@ if its not registered
         4. then frontend updates auth-state
         5. Do not call login again after register.
 
+        okay so now i have implemented answer route , question route and auth routes 
+        my backend is complete and more feature i will implement later 
+        so what i learnt while implementing these where
+            decide the function of our application 
+            then decide routes 
+            then decide what all http method does it reqiure 
+            then write functions in controller and routes in routes and use router module 
+                 2 key learnings from here were that 
+                 1. whenever you use req.params.someid in controller's function
+                    this someid should be equal to that id which is in the routes of it 
+                 2. always keep the specific routes before the dynamic/general routes 
+                    and inorder to avoid confilcts the ordering of routes matters a lot 
+            now after doing that protect the required route using authmiddleware
         
+
+        now i will work with frontend and then we will connect both.
