@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-
 const questionschema=new mongoose.Schema({
     title:{
         type:String,

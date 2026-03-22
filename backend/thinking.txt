@@ -87,3 +87,35 @@ if its not registered
     routes
         authroute.js -> URL mapping is implemented here
     
+    now the auth is implemented and we want to verify the user at each requet so that only authenticated 
+    user can access some of the routes these routes which only can be accessed by authenticated user are
+    called PROTECTED routes
+    now we need a middleware to verify this 
+    so we will implement a authmidleware to protect the routes
+
+    now middle ware is done and we need to design the question/answer routes 
+    so they will have multiple methods
+    so while posting a answer or a question we need to verify user
+    and we need details of author too
+    so we will fetch the details of author from server only 
+    (we got data in the payload )
+    and then we can deal with our question route 
+    we can freely make them public or protected 
+
+    so the route structure for question looks like
+
+    GET    /api/questions      -> getAllQuestions  (public) 
+    GET    /api/questions/:id  -> getQuestion      (public)
+    POST   /api/questions      -> createQuestion   (protected)
+    DELETE /api/questions/:id  -> deleteQuestion   (protected)
+    
+
+    Implementing Immediate Login feature
+    so the flow looks like this for implementing it 
+        1. User submits the register from
+        2. Frontend calls POST /api/auth/register
+        3. If status is 201 frontend should store it the returned token somwhere ( generally in local storage or in form of cookie)
+        4. then frontend updates auth-state
+        5. Do not call login again after register.
+
+        

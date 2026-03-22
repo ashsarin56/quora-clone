@@ -44,6 +44,7 @@ const registerUser=async(req,res)=>{
     catch(error){
         res.status(500).json({message: error.message});
     }
+
 };
 const loginUser=async(req,res)=>{
     /*
@@ -53,6 +54,8 @@ const loginUser=async(req,res)=>{
         if wrong then 401
         else generate jwt token 
         and sent token back to user 
+        store it either in local storage or in cookie (client side)
+        and also while logging out 
     */
    try{
     const {email,password}=req.body;
@@ -64,7 +67,7 @@ const loginUser=async(req,res)=>{
     if(!isequal){
         return res.status(401).json({message:"Invalid password"}); 
     }
-    const token=jwt.sign(
+    const token=jwt.sign(// user id , secret key , expiry time
         {userId:user._id},
         process.env.JWT_SECRET,
         {expiresIn:'7d'}
@@ -82,5 +85,22 @@ const loginUser=async(req,res)=>{
     res.status(500).json({message:`Something went wrong: ${error}`});
    }
 };
+const logoutUser=async(req,res)=>{
+    /*
+        since we are using JWT token for authentication and it is stateless, we cannot invalidate the token on the server side.
+        so we can only clear the token on the client side by clearing the cookie or local storage where the token is stored.
+    */  
+    try{
+        res.clearCookie('token',{
+            httpOnly:true,
+            secure:process.env.NODE_ENV==='production',
+            sameSite:'strict'
+        });
+        res.status(200).json({message:"Logged out successfully"});
+    }
+    catch(error){
+        res.status(500).json({message:`Something went wrong: ${error}`});
+    }
+}
 
-module.exports={registerUser,loginUser};
+module.exports={registerUser,loginUser,logoutUser};
