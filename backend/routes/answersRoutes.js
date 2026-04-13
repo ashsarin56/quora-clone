@@ -12,9 +12,9 @@ const {protect}=require('../middlewares/authMiddleware.js');
     for that question id which will be wrong
     SO WE NEED TO PLACE SPECIFIC ROUTES BEFORE GENERAL/DYNAMIC ROUTES
 */
-router.get('/:answerId',getAnswer);
-router.delete('/:answerId',protect,deleteAnswer);
 router.get('/questions/:questionId',getAllAnswer);
 router.post('/questions/:questionId',protect,createAnswer);
+router.get('/:answerId',getAnswer);
+router.delete('/:answerId',protect,deleteAnswer);
 
 module.exports=router;
